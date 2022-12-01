@@ -32,13 +32,18 @@ fn main() {
    }
    //Why not print out how many elves are on the trip?
     println!("Number of Elves on trip: {}", elves_calories.len());
-   //Sort the vector to get the elf with the most in first place 
-    elves_calories.sort_by( | a, b| b.cmp(&a) );
+    
+    //use the iter.max function to find the elf with the most calories
+    let max_value = elves_calories.iter().max();
+    match max_value {
+        None => println!("No max value was located!"),
+        Some(i) => println!( "Most Calories: {}", i),
+    }
 
-    //Elf in position 0 has the most calories so dump that out to the console
-    println!( "Most Calories: {}", &elves_calories[0] );
     
     //Part 2 of the question requires total calories for the 3 elves with the most calories
+    //Sort the vector to get the elves with the most calories in first place 
+    elves_calories.sort_by( | a, b| b.cmp(&a) );
     //Nice that Iterators have a sum function on them and I figured out the syntax for only do this on the first 3 elements!
     let top_three_total_calories : u32 = elves_calories[0..3].iter().sum();
     //Print the answer for part 2
